@@ -4,6 +4,8 @@ import { Navbar, Container, Nav, NavDropdown} from 'react-bootstrap';
 import './App.css';
 import Data from './data.js';
 
+import { Link, Route, Switch } from 'react-router-dom';
+
 function App() {
 
   let [shoes, shoesClon] = useState(Data);
@@ -30,40 +32,44 @@ function App() {
       </Container>
     </Navbar>
 
-    <div className="jumbotron">
-      <div>
-        <p>메인사진 들어갈곳</p>
+   
+
+    <Route exact path="/">
+      <div className="jumbotron">
+        <div>
+          <p>메인사진 들어갈곳</p>
+        </div>
+      </div>
+      
+      <div className="container">
+      <div className="row">
+        {
+        shoes.map((a,i) => {
+          return(
+        <Card shoes={shoes[i]} i={i} key={i}/>
+          )
+        })
+      }
       </div>
     </div>
 
-      <div className="container">
-        <div className="row">
-          <Card/>
-          <div className="col-md-4">
-            <img src="https://codingapple1.github.io/shop/shoes2.jpg" width="100%" />
-            <h4>{shoes[1].title}</h4>
-            <p>{shoes[1].content}</p>
-            <p>{shoes[1].price + '원'}</p>
-          </div>
-          <div className="col-md-4">
-            <img src="https://codingapple1.github.io/shop/shoes3.jpg" width="100%" />
-            <h4>{shoes[2].title}</h4>
-            <p>{shoes[2].content}</p>
-            <p>{shoes[2].price + '원'}</p>
-          </div>
-        </div>
-      </div>
-    </div>
+    </Route>
+    <Route path="/detail">
+      <div>디테일페이지에요</div>
+    </Route>
+
+
+  </div>
   );
 }
 
-function Card(props){
+function Card(props,i){
   return ( 
     <div className="col-md-4">
-      <img src="https://codingapple1.github.io/shop/shoes1.jpg" width="100%" />
-      <h4>{props.shoes[0].title}</h4>
-      <p>{props.shoes[0].content}</p>
-      <p>{props.shoes[0].price + '원'}</p>
+      <img src={'https://codingapple1.github.io/shop/shoes' + (props.i + 1) +'.jpg'} width="100%" />
+      <h4>{props.shoes.title}</h4>
+      <p>{props.shoes.content}</p>
+      <p>{props.shoes.price + '원'}</p>
     </div>
   )
 }
