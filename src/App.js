@@ -37,7 +37,7 @@ function App() {
     <Route exact path="/">
       <div className="jumbotron">
         <div>
-          <p>메인사진 들어갈곳</p>
+          <p>메인사진 + 글 작성할곳</p>
         </div>
       </div>
       
